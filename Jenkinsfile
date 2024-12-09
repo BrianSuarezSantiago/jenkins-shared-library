@@ -9,10 +9,8 @@ pipeline {
                 //ejemplo('carlos')
                 // ejemplo.call()
 
-                script {
                     ejemplo.prepareStage()
                     ejemplo.mavenBuildStage()
-                }
                 
             }
         }

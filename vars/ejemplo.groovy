@@ -1,4 +1,4 @@
-class ejemplo {
+
     def prepareStage() {
         print("prepare stage")
     }
@@ -7,4 +7,3 @@ class ejemplo {
     def mavenBuildStage() {
         print("buildstage")
     }
-}
