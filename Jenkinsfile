@@ -12,11 +12,7 @@ pipeline {
                     //ejemplo('carlos')
                     // ejemplo.call()
                     ejemplo.prepareStage()
-                    ejemplo.mavenBuildStage()
-
-                    // ! llamada a funciones desde una clase
-                    def helper = new MiClase()
-                    helper.prepareStage()
+                    //ejemplo.mavenBuildStage()
                 }
             }
         }
