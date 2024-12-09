@@ -6,10 +6,10 @@ pipeline {
     agent any
 
     environment {
-        //FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/node-hello.git'
-        //BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
-        REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
-        FOLDER_NAME = 'java-app' // '' Placeholder, will be completed dynamically
+        FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/node-hello.git'
+        BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
+        FRONT_FOLDER_NAME = 'java-app' //! '' Placeholder, will be completed dynamically
+        BACK_FOLDER_NAME = 'node-hello'
     }
 
     stages {
@@ -17,9 +17,14 @@ pipeline {
             steps {
                 script {
                     ejemplo.prepareStage()
-                    dir("${FOLDER_NAME}") {
+                    dir("${FRONT_FOLDER_NAME}") {
                         ejemplo.mavenBuildStage()
                         ejemplo.mavenDeployStage()
+                    }
+
+                    dir("${BACK_FOLDER_NAME}") {
+                        ejemplo.npmBuildStage()
+                        ejemplo.npmDeployStage()                    
                     }
                 }
             }

@@ -4,44 +4,15 @@
 
 
 def prepareStage() {
-    //sh "git clone ${FRONTEND_REPOSITORY_URL}"
-    //sh "git clone ${BACKEND_REPOSITORY_URL}"
     cleanWs()
-    sh "git clone ${REPOSITORY_URL}"
+    sh "git clone ${FRONTEND_REPOSITORY_URL}"
+    sh "git clone ${BACKEND_REPOSITORY_URL}"
     sh "ls -l"
     sh "pwd"
     print("Repositories have been successfully cloned.")
     
     //! Establecer FOLDER_NAME dinámicamente (esto puede cambiar según el repositorio)
     //env.FOLDER_NAME = sh(script: "basename ${REPOSITORY_URL} .git", returnStdout: true).trim()
-    
-    // Determine the type of project (Maven or NPM) based on the presence of the key files
-    def projectType = detectProjectType()
-
-    if (projectType == 'maven') {
-        dir("${FOLDER_NAME}") {
-            mavenBuildStage()
-            mavenPackageStage()
-            mavenDeployStage()
-        }
-    } else if (projectType == 'npm') {
-        dir("${FOLDER_NAME}") {
-            npmBuildStage()
-            npmPackageStage()
-            npmDeployStage()
-        }
-    } 
-}
-
-// Detects project type (Maven or NPM) based on key files
-def detectProjectType() {
-    if(fileExists("pom.xml")) {
-        return 'maven'
-    } else if(fileExists("package.json")) {
-        return 'npm'
-    } else {
-        error "No project type detected. Make sure the repository contains a pom.xml or package.json."
-    }
 }
 
 // Maven Projects
@@ -75,9 +46,11 @@ def mavenDeployStage() {
 
 // NPM Projects
 def npmBuildStage() {
-    sh 'npm install'
-    sh 'npm test'
-    sh 'echo "Build completed on $(date)"'
+    sh '''
+        npm install
+        npm test
+        echo "Build completed on $(date)"
+    '''
 }
 
 def npmPackageStage() {
