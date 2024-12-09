@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Prueba') {
             steps {
-                ejemplo('pepe')
+                ejemplo('carlos')
                 // ejemplo.call()
             }
         }
