@@ -26,11 +26,11 @@ def mavenBuildStage() {
         COPY target/*.jar app.jar
         ENTRYPOINT ["java", "-jar", "app.jar"]
     '''
-    echo "Dockerfile created successfully on $(date)"
+    sh 'echo "Dockerfile created successfully on $(date)'
 
     // Construcción de la imagen Docker
     sh '''
-        echo "Building Docker image..."
+        echo Building Docker image...
         docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
         echo "Docker image ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully."
     
@@ -67,14 +67,14 @@ def npmBuildStage() {
     sh '''
         npm install
         npm test
-        echo "Build completed on $(date)
+        echo Build completed on $(date)
     '''
 }
 
 def npmPackageStage() {
     sh '''
         npm run build
-        echo "Build completed on $(date)
+        echo Build completed on $(date)
     '''
 }
 
