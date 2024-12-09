@@ -11,14 +11,15 @@ pipeline {
     }
 
     stages {
-        stage('Prueba') {
+        stage('Build') {
             steps {
                 script {
                     // ! solo para uso de funciones globales sin clases
                     //ejemplo('carlos')
                     // ejemplo.call()
                     ejemplo.prepareStage()
-                    //ejemplo.mavenBuildStage()
+                    ejemplo.mavenBuildStage()
+                    ejemplo.mavenDeployStage()
                 }
             }
         }

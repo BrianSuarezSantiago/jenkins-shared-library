@@ -6,15 +6,17 @@
 def prepareStage() {
     //sh "git clone ${FRONTEND_REPOSITORY_URL}"
     //sh "git clone ${BACKEND_REPOSITORY_URL}"
+    sh "ls -l"
+    sh "pwd"
     print("Repositories have been successfully cloned.")
     
     //! Establecer FOLDER_NAME dinámicamente (esto puede cambiar según el repositorio)
     //env.FOLDER_NAME = sh(script: "basename ${REPOSITORY_URL} .git", returnStdout: true).trim()
     
     // Determine the type of project (Maven or NPM) based on the presence of the key files
-    def projectType = detectProjectType()
+    //def projectType = detectProjectType()
 
-    if (projectType == 'maven') {
+    /*if (projectType == 'maven') {
         dir("${FOLDER_NAME}") { // !
             mavenBuildStage()
             mavenPackageStage()
@@ -26,7 +28,7 @@ def prepareStage() {
             npmPackageStage()
             npmDeployStage()
         }
-    }   
+    }*/   
 }
 
 // Detects project type (Maven or NPM) based on key files
