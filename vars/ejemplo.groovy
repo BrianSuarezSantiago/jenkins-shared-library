@@ -6,7 +6,6 @@
 def prepareStage() {
     //sh "git clone ${FRONTEND_REPOSITORY_URL}"
     //sh "git clone ${BACKEND_REPOSITORY_URL}"
-    sh "rm -rf ."
     sh "git clone ${REPOSITORY_URL}"
     sh "ls -l"
     sh "pwd"

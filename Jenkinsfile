@@ -16,11 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    ejemplo.prepareStage()
                     dir("${FOLDER_NAME}") {
-                        // ! solo para uso de funciones globales sin clases
-                        //ejemplo('carlos')
-                        // ejemplo.call()
-                        ejemplo.prepareStage()
                         ejemplo.mavenBuildStage()
                         ejemplo.mavenDeployStage()
                     }
