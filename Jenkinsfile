@@ -5,11 +5,13 @@ pipeline {
     stages {
         stage('Prueba') {
             steps {
-                // ! solo para uso de funciones globales
-                //ejemplo('carlos')
-                // ejemplo.call()
-                ejemplo.prepareStage()
-                ejemplo.mavenBuildStage()
+                script {
+                    // ! solo para uso de funciones globales
+                    //ejemplo('carlos')
+                    // ejemplo.call()
+                    ejemplo.prepareStage()
+                    ejemplo.mavenBuildStage()
+                }
             }
         }
     }
