@@ -1,11 +1,11 @@
 package com.ejemplo
 
 class MiClase {
-    void prepareStage() {
+    String prepareStage() {
         print("prepare stage desde la clase")
     }
 
-    void mavenBuildStage() {
+    String mavenBuildStage() {
         print("build de maven desde la clase")
     }
 }
