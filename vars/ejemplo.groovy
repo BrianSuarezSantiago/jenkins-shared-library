@@ -1,9 +1,8 @@
+def prepareStage() {
+    print("prepare stage")
+}
 
-    def prepareStage() {
-        print("prepare stage")
-    }
-
-    // Maven Projects
-    def mavenBuildStage() {
-        print("buildstage")
-    }
+// Maven Projects
+def mavenBuildStage() {
+    print("buildstage")
+}

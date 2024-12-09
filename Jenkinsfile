@@ -8,10 +8,8 @@ pipeline {
                 // ! solo para uso de funciones globales
                 //ejemplo('carlos')
                 // ejemplo.call()
-
-                    ejemplo.prepareStage()
-                    ejemplo.mavenBuildStage()
-                
+                ejemplo.prepareStage()
+                ejemplo.mavenBuildStage()
             }
         }
     }
