@@ -45,7 +45,7 @@ def mavenBuildStage() {
     sh 'mvn clean install'
     sh "mvn package"
     //! Integración con herramientas SonarQube, Fortify, IQServer
-    echo "Build completed on $(date)"
+    sh 'echo "Build completed on $(date)"'
     cleanWs()
     sh "ls -l"
 }
@@ -75,12 +75,12 @@ def mavenDeployStage() {
 def npmBuildStage() {
     sh 'npm install'
     sh 'npm test'
-    echo "Build completed on $(date)"
+    sh 'echo "Build completed on $(date)"'
 }
 
 def npmPackageStage() {
     sh 'npm run build'
-    echo "Build completed on $(date)"
+    sh 'echo "Build completed on $(date)"'
 }
 
 def npmDeployStage() {
