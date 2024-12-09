@@ -15,7 +15,7 @@ def mavenBuildStage() {
     // mvn package -Dmaven.test.skip=true -DoutputDirectory=$(pwd)
     sh '''
         mvn clean install
-        echo "Build completed on $(date)
+        echo Build completed on $(date)
     '''
     //! Integración con herramientas SonarQube, Fortify, IQServer
     cleanWs()
@@ -46,13 +46,13 @@ def npmBuildStage() {
     sh '''
         npm install
         npm test
-        echo "Build completed on $(date)"
+        echo "Build completed on $(date)
     '''
 }
 
 def npmPackageStage() {
     sh '''
-        npm run build'
+        npm run build
         echo "Build completed on $(date)
     '''
 }
