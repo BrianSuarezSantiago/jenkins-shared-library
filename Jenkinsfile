@@ -5,10 +5,15 @@ pipeline {
     stages {
         stage('Prueba') {
             steps {
+                // ! solo para uso de funciones globales
                 //ejemplo('carlos')
                 // ejemplo.call()
-                ejemplo.prepareStage()
-                ejemplo.mavenBuildStage()
+
+                script {
+                    ejemplo.prepareStage()
+                    ejemplo.mavenBuildStage()
+                }
+                
             }
         }
     }
