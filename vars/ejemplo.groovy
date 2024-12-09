@@ -12,10 +12,30 @@ def prepareStage() {
 
 // Maven Projects
 def mavenBuildStage() {
-    // mvn package -Dmaven.test.skip=true -DoutputDirectory=$(pwd)
+    // mvn clean install -DskipTests
+    // mvn package -DskipTests -DoutputDirectory=$(pwd)
     sh '''
         mvn clean install
         echo Build completed on $(date)
+    '''
+    
+    // Crear un Dockerfile dinámicamente
+    writeFile file: 'Dockerfile', text: '''
+        FROM openjdk:11-jre-slim
+        WORKDIR /app
+        COPY target/*.jar app.jar
+        ENTRYPOINT ["java", "-jar", "app.jar"]
+    '''
+    echo "Dockerfile created successfully on $(date)"
+
+    // Construcción de la imagen Docker
+    sh '''
+        echo "Building Docker image..."
+        docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
+        echo "Docker image ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully."
+    
+        ls -l
+        pwd
     '''
     //! Integración con herramientas SonarQube, Fortify, IQServer
     cleanWs()
@@ -38,6 +58,7 @@ def mavenBuildStage() {
 }*/
 
 def mavenDeployStage() {
+    print("deploy stage")
     cleanWs()
 }
 

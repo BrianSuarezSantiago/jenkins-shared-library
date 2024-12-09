@@ -10,6 +10,8 @@ pipeline {
         BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
         FRONT_FOLDER_NAME = 'java-app' //! '' Placeholder, will be completed dynamically
         BACK_FOLDER_NAME = 'simple-nodejs-app'
+        DOCKER_IMAGE_NAME = 'SPRING'
+        DOCKER_IMAGE_TAG = 'latest'
     }
 
     stages {
