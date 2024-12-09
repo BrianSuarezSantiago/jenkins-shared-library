@@ -6,8 +6,8 @@ pipeline {
     agent any
 
     environment {
-        FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/node-hello.git'
-        BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
+        //FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/node-hello.git'
+        //BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
         REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
         FOLDER_NAME = 'java-app' // '' Placeholder, will be completed dynamically
     }
