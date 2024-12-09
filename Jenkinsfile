@@ -5,8 +5,10 @@ pipeline {
     stages {
         stage('Prueba') {
             steps {
-                ejemplo('carlos')
+                //ejemplo('carlos')
                 // ejemplo.call()
+                ejemplo.prepareStage()
+                ejemplo.mavenBuildStage()
             }
         }
     }
