@@ -1,26 +1,23 @@
-/*def call(String name = 'Mundo') {
-    echo "Hola, ${name}!"
-}*/
-
-
 def prepareStage() {
     cleanWs()
-    sh "git clone ${FRONTEND_REPOSITORY_URL}"
-    sh "git clone ${BACKEND_REPOSITORY_URL}"
-    sh "ls -l"
-    sh "pwd"
+    sh '''
+        git clone ${FRONTEND_REPOSITORY_URL}
+        git clone ${BACKEND_REPOSITORY_URL}
+    '''
     print("Repositories have been successfully cloned.")
-    
+
     //! Establecer FOLDER_NAME dinámicamente (esto puede cambiar según el repositorio)
     //env.FOLDER_NAME = sh(script: "basename ${REPOSITORY_URL} .git", returnStdout: true).trim()
 }
 
 // Maven Projects
 def mavenBuildStage() {
-    sh 'mvn clean install'
+    // mvn package -Dmaven.test.skip=true -DoutputDirectory=$(pwd)
+    sh '''
+        mvn clean install
+        echo "Build completed on $(date)
+    '''
     //! Integración con herramientas SonarQube, Fortify, IQServer
-    sh 'echo "Build completed on $(date)"'
-    // ! Docker
     cleanWs()
 }
 
@@ -54,8 +51,10 @@ def npmBuildStage() {
 }
 
 def npmPackageStage() {
-    sh 'npm run build'
-    sh 'echo "Build completed on $(date)"'
+    sh '''
+        npm run build'
+        echo "Build completed on $(date)
+    '''
 }
 
 def npmDeployStage() {
