@@ -26,7 +26,7 @@ def mavenBuildStage() {
         COPY target/*.jar app.jar
         ENTRYPOINT ["java", "-jar", "app.jar"]
     '''
-    sh 'echo "Dockerfile created successfully on $(date)'
+    sh 'echo "Dockerfile created successfully on $(date)"'
 
     // Construcción de la imagen Docker
     sh '''
