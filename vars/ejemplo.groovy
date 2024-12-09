@@ -46,8 +46,8 @@ def detectProjectType() {
 
 // Maven Projects
 def mavenBuildStage() {
-    sh 'mvn clean install'
     sh "ls -l"
+    sh 'mvn clean install'
     sh "mvn package"
     //! Integración con herramientas SonarQube, Fortify, IQServer
     sh 'echo "Build completed on $(date)"'
