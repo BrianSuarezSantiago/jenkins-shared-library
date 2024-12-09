@@ -6,6 +6,7 @@
 def prepareStage() {
     //sh "git clone ${FRONTEND_REPOSITORY_URL}"
     //sh "git clone ${BACKEND_REPOSITORY_URL}"
+    sh "git clone ${REPOSITORY_URL}"
     sh "ls -l"
     sh "pwd"
     print("Repositories have been successfully cloned.")
