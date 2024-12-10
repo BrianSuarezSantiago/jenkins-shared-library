@@ -32,10 +32,11 @@ pipeline {
                         ejemplo.mavenDeployStage()
                     }
 
-                    /*dir("${BACK_FOLDER_NAME}") {
+                    dir("${BACK_FOLDER_NAME}") {
                         ejemplo.npmBuildStage()
+                        ejemplo.npmPackageStage()
                         ejemplo.npmDeployStage()                    
-                    }*/
+                    }
                 }
             }
         }
