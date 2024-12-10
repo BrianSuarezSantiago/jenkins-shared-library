@@ -41,11 +41,13 @@ def mavenBuildStage() {
         WORKDIR /app
         COPY target/*.jar app.jar
         ENTRYPOINT ["java", "-jar", "app.jar"]
-
+    '''
+    sh '''
         echo "Dockerfile created successfully on $(date)"
+
+        docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
         echo "Docker image ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully"
     '''
-    //sh 'docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
 
     // ! Pushear imagen
 
