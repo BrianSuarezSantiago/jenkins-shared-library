@@ -29,7 +29,7 @@ def checkS3BucketExists(bucketName) {
 def mavenBuildStage() {
     //! mvn package -DskipTests -DoutputDirectory=$(pwd)
     sh 'mvn clean install'
-    print("Build completed on $(date)")
+    print('Build completed on $(date)')
 
     //! Integración con herramientas SonarQube, Fortify, IQServer
 
