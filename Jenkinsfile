@@ -30,7 +30,6 @@ pipeline {
                         ejemplo.mavenBuildStage()
                         ejemplo.mavenPackageStage()
                         ejemplo.mavenDeployStage()
-                        
                     }
 
                     /*dir("${BACK_FOLDER_NAME}") {

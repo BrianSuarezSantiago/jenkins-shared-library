@@ -39,9 +39,9 @@ def mavenBuildStage() {
         COPY target/*.jar app.jar
         ENTRYPOINT ["java", "-jar", "app.jar"]
     '''
-    print("Dockerfile created successfully on $(date)")
+    print('Dockerfile created successfully on $(date)')
     //sh 'docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
-    print("Docker image ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully.")
+    print('Docker image ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully.')
 
     // ! Pushear imagen
 
@@ -77,7 +77,7 @@ def mavenPackageStage() {
 def mavenDeployStage() {
     //! check --delete flag option for aws sync command
     sh 'aws s3 sync maven_output s3://${BUCKET_NAME}/'
-    print("Successfully loaded into ${BUCKET_NAME} on $(date)")
+    print('Successfully loaded into ${BUCKET_NAME} on $(date)')
     cleanWs()
 
     sh 'ls -l'
