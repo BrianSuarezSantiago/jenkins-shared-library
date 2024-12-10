@@ -23,7 +23,9 @@ pipeline {
                     ejemplo.prepareStage()
                     dir("${FRONT_FOLDER_NAME}") {
                         ejemplo.mavenBuildStage()
+                        ejemplo.mavenPackageStage()
                         ejemplo.mavenDeployStage()
+                        
                     }
 
                     /*dir("${BACK_FOLDER_NAME}") {
