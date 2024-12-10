@@ -13,7 +13,7 @@ pipeline {
         MVN_DOCKER_IMAGE_NAME = 'spring'
         NPM_DOCKER_IMAGE_NAME = 'node'
         DOCKER_IMAGE_TAG = 'latest'
-        
+        BUCKET_NAME = 'bucket-for-cicd-pipeline'
     }
 
     stages {
