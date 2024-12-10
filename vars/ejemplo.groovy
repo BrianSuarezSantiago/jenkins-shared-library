@@ -66,8 +66,9 @@ def mavenPackageStage() {
 
 def mavenDeployStage() {
     //! check --delete flag option for aws sync command
+    // ! choose files inside directory or the whole directory
     sh '''
-        aws s3 sync maven_output/ s3://${BUCKET_NAME}/
+        aws s3 sync maven_output s3://${BUCKET_NAME}/
         echo Successfully loaded into ${BUCKET_NAME} on $(date)
     '''
     cleanWs()
