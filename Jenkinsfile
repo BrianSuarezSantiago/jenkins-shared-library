@@ -18,6 +18,9 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')
     }
 
+    //! Establecer FOLDER_NAME dinámicamente (esto puede cambiar según el repositorio)
+    //env.FOLDER_NAME = sh(script: "basename ${REPOSITORY_URL} .git", returnStdout: true).trim()
+
     stages {
         stage('Build') {
             steps {
