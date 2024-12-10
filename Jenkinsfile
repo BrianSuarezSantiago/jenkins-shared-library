@@ -14,6 +14,8 @@ pipeline {
         NPM_DOCKER_IMAGE_NAME = 'node'
         DOCKER_IMAGE_TAG = 'latest'
         BUCKET_NAME = 'bucket-for-cicd-pipeline'
+        AWS_ACCESS_KEY_ID = credentials('aws-credentials')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')
     }
 
     stages {
