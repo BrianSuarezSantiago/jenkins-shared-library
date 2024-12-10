@@ -82,12 +82,13 @@ def npmBuildStage() {
     // Construcción de la imagen Docker
     sh '''
         echo Building Docker image...
-        docker build -t ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
+        
         echo "Docker image ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully."
     
         ls -l
         pwd
     '''
+    //docker build -t ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
     //! Integración con herramientas SonarQube, Fortify, IQServer
     cleanWs()
 }
