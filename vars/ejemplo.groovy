@@ -4,7 +4,7 @@ def prepareStage() {
     sh '''
         git clone ${FRONTEND_REPOSITORY_URL}
         git clone ${BACKEND_REPOSITORY_URL}
-        echo "Repositories have been successfully cloned."
+        echo "Repositories have been successfully cloned"
     '''
 }
 
@@ -68,6 +68,7 @@ def mavenPackageStage() {
     //echo "Kubernetes configuration files have been successfully zipped into ${zipFileName}"
 
     // Check if the S3 bucket exists
+    checkS3BucketExists("${BUCKET_NAME}")
 
     // Prepare output to upload to ROSA
     sh '''
@@ -80,7 +81,7 @@ def mavenPackageStage() {
 def mavenDeployStage() {
     //! check --delete flag option for aws sync command
     sh '''
-        aws s3 sync maven_output s3://${BUCKET_NAME}/
+        aws s3 sync maven_output/ s3://${BUCKET_NAME}/
         echo "Successfully loaded into ${BUCKET_NAME} on $(date)"
     '''
     cleanWs()
