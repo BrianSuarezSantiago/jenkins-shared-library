@@ -92,10 +92,10 @@ def mavenDeployStage() {
 def npmBuildStage() {
     sh '''
         npm install
-        npm run build
+        
         echo "Build completed on $(date)"
     '''
-
+    //npm run build
     //! Integración con herramientas SonarQube, Fortify, IQServer
     // sh 'sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=src -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_TOKEN}'
 
