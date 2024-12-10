@@ -8,6 +8,7 @@ def prepareStage() {
     '''
 }
 
+// Checks if the specify S3 bucket exists or not
 def checkS3BucketExists(bucketName) {
     try {
         def result = sh(script: "aws s3api head-bucket --bucket ${bucketName} 2>/dev/null", returnStatus: true)
@@ -25,7 +26,7 @@ def checkS3BucketExists(bucketName) {
     }
 }
 
-// Build, testing, code quality and containerization
+// Build, testing, code quality and containerization for Maven projects
 def mavenBuildStage() {
     //! mvn package -DskipTests -DoutputDirectory=$(pwd)
     sh '''
@@ -42,7 +43,7 @@ def mavenBuildStage() {
         ENTRYPOINT ["java", "-jar", "app.jar"]
 
         echo "Dockerfile created successfully on $(date)"
-        echo "Docker image ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully."
+        echo "Docker image ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully"
     '''
     //sh 'docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
 
@@ -67,9 +68,6 @@ def mavenPackageStage() {
     //sh "zip -r ${zipFileName} ${configDir}/*"
     //echo "Kubernetes configuration files have been successfully zipped into ${zipFileName}"
 
-    // Check if the S3 bucket exists
-    checkS3BucketExists("${BUCKET_NAME}")
-
     // Prepare output to upload to ROSA
     sh '''
         mkdir -p maven_output
@@ -77,7 +75,7 @@ def mavenPackageStage() {
     '''
 }
 
-// Upload frontend and backend
+// Upload backend to ROSA cluster
 def mavenDeployStage() {
     //! check --delete flag option for aws sync command
     sh '''
@@ -89,44 +87,58 @@ def mavenDeployStage() {
     sh 'ls -l'
 }
 
-/*def npmBuildStage() {
+// Build, testing, code quality, and containerization for NPM projects
+def npmBuildStage() {
     sh '''
         npm install
-        npm test
-        echo Build completed on $(date)
+        npm run build
+        echo "Build completed on $(date)"
     '''
 
-    // Crear un Dockerfile dinámicamente
-    writeFile file: 'Dockerfile', text: '''
-        FROM openjdk:11-jre-slim
-        WORKDIR /app
-        COPY target/*.jar app.jar
-        ENTRYPOINT ["java", "-jar", "app.jar"]
-    '''
-    sh 'echo "Dockerfile created successfully on $(date)"'
-
-    // Construcción de la imagen Docker
-    sh '''
-        echo Building Docker image...
-        
-        echo "Docker image ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully."
-    
-        ls -l
-        pwd
-    '''
-    //docker build -t ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
     //! Integración con herramientas SonarQube, Fortify, IQServer
-    cleanWs()
+    // sh 'sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=src -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_TOKEN}'
+
+    writeFile file: 'Dockerfile', text: '''
+        FROM node:18-alpine
+        WORKDIR /app
+        COPY . .
+        RUN npm install --production
+        CMD ["npm", "start"]
+    '''
+
+    sh '''
+        echo "Dockerfile created successfully on $(date)"
+
+        docker build -t ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
+        echo "Docker image ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully"
+    '''
+
+    // ! Pushear imagen
+    // sh 'docker push ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}'
+
+    // ! Subida de la imagen a Nexus
+    //cleanWs()
 }
 
+// Configure deployment destination and save workspace configuration
 def npmPackageStage() {
     sh '''
-        npm run build
-        echo Build completed on $(date)
+        mkdir -p npm_output
+        cp -r dist/ package.json Dockerfile npm_output  
     '''
+    //echo "NPM output prepared on $(date)"
+
+    checkS3BucketExists("${BUCKET_NAME}")
+
+    // Opcional: Realizar acciones adicionales (como zipear configuraciones o preparar datos para Kubernetes)
+    // sh "zip -r ${zipFileName} ${configDir}/*"
 }
 
+// Upload frontend to S3 bucket
 def npmDeployStage() {
+    sh '''
+        aws s3 sync npm_output/ s3://${BUCKET_NAME}/
+        echo "Successfully loaded into ${BUCKET_NAME} on $(date)"
+    '''
     cleanWs()
 }
-*/
