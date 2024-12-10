@@ -86,8 +86,6 @@ def mavenDeployStage() {
         echo "Successfully loaded into ${BUCKET_NAME} on $(date)"
     '''
     cleanWs()
-
-    sh 'ls -l'
 }
 
 // Build, testing, code quality, and containerization for NPM projects
