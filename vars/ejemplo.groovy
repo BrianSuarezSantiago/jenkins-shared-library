@@ -45,9 +45,10 @@ def mavenBuildStage() {
     sh '''
         echo "Dockerfile created successfully on $(date)"
 
-        docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
+        
         echo "Docker image ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully"
     '''
+    //docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
 
     // ! Pushear imagen
 
