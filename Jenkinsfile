@@ -10,8 +10,8 @@ pipeline {
         BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
         FRONT_FOLDER_NAME = 'java-app' //! '' Placeholder, will be completed dynamically
         BACK_FOLDER_NAME = 'simple-nodejs-app'
-        MVN_DOCKER_IMAGE_NAME = 'SPRING'
-        NPM_DOCKER_IMAGE_NAME = 'NODE'
+        MVN_DOCKER_IMAGE_NAME = 'spring'
+        NPM_DOCKER_IMAGE_NAME = 'node'
         DOCKER_IMAGE_TAG = 'latest'
         
     }
