@@ -1,3 +1,4 @@
+// Clone and configure step
 def prepareStage() {
     cleanWs()
     sh '''
@@ -5,45 +6,51 @@ def prepareStage() {
         git clone ${BACKEND_REPOSITORY_URL}
     '''
     print("Repositories have been successfully cloned.")
-
-    //! Establecer FOLDER_NAME dinámicamente (esto puede cambiar según el repositorio)
-    //env.FOLDER_NAME = sh(script: "basename ${REPOSITORY_URL} .git", returnStdout: true).trim()
 }
 
-// Maven Projects
+def checkS3BucketExists(bucketName) {
+    try {
+        def result = sh(script: "aws s3api head-bucket --bucket ${bucketName} 2>/dev/null", returnStatus: true)
+
+        if (result == 0) {
+            echo "El bucket '${bucketName}' existe."
+            return true
+        } else {
+            echo "El bucket '${bucketName}' no existe."
+            return false
+        }
+    } catch (Exception exception) {
+        echo "Error al verificar el bucket: ${exception.message}"
+        return false
+    }
+}
+
+// Build, testing, code quality and containerization
 def mavenBuildStage() {
-    // mvn clean install -DskipTests
-    // mvn package -DskipTests -DoutputDirectory=$(pwd)
-    sh '''
-        mvn clean install
-        echo Build completed on $(date)
-    '''
-    
-    // Crear un Dockerfile dinámicamente
+    //! mvn package -DskipTests -DoutputDirectory=$(pwd)
+    sh 'mvn clean install'
+    print("Build completed on $(date)")
+
+    //! Integración con herramientas SonarQube, Fortify, IQServer
+
     writeFile file: 'Dockerfile', text: '''
         FROM openjdk:11-jre-slim
         WORKDIR /app
         COPY target/*.jar app.jar
         ENTRYPOINT ["java", "-jar", "app.jar"]
     '''
-    sh 'echo "Dockerfile created successfully on $(date)"'
+    print("Dockerfile created successfully on $(date)")
+    //sh 'docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
+    print("Docker image ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully.")
 
-    // Construcción de la imagen Docker
-    sh '''
-        echo Building Docker image...
-        
-        echo "Docker image ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} built successfully."
-    
-        ls -l
-        pwd
-    '''
-    // docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
-    //! Integración con herramientas SonarQube, Fortify, IQServer
+    // ! Pushear imagen
+
+    // ! Subida de la imagen a Nexus
     //cleanWs()
 }
 
+// Configure deployment destination and save workspace configuration
 def mavenPackageStage() {
-    //! configure deployment
     // Iniciar sesión en el clúster OpenShift (usando el token de acceso o kubeconfig)
     //sh "oc login --token=${OPENSHIFT_TOKEN} --server=${OPENSHIFT_SERVER}"
 
@@ -57,25 +64,26 @@ def mavenPackageStage() {
     //sh "zip -r ${zipFileName} ${configDir}/*"
     //echo "Kubernetes configuration files have been successfully zipped into ${zipFileName}"
 
-    // !checkear si un bucket de s3 existe
+    // Check if the S3 bucket exists
+
+    // Prepare output to upload to ROSA
     sh '''
         mkdir -p maven_output
         cp target/*.jar Dockerfile maven_output
     '''
 }
 
+// Upload frontend and backend
 def mavenDeployStage() {
     //! check --delete flag option for aws sync command
-    // ! choose files inside directory or the whole directory
-    sh '''
-        aws s3 sync maven_output s3://${BUCKET_NAME}/
-        echo Successfully loaded into ${BUCKET_NAME} on $(date)
-    '''
+    sh 'aws s3 sync maven_output s3://${BUCKET_NAME}/'
+    print("Successfully loaded into ${BUCKET_NAME} on $(date)")
     cleanWs()
+
+    sh 'ls -l'
 }
 
-// NPM Projects
-def npmBuildStage() {
+/*def npmBuildStage() {
     sh '''
         npm install
         npm test
@@ -115,3 +123,4 @@ def npmPackageStage() {
 def npmDeployStage() {
     cleanWs()
 }
+*/
