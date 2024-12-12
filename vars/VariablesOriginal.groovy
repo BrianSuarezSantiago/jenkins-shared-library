@@ -1,6 +1,6 @@
 //!package vars
 
-def FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
+//def FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
 
 // Define here all the global variables
 class Variables {
