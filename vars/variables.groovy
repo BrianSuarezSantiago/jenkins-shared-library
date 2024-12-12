@@ -23,6 +23,3 @@ class Variables {
     static def String AWS_ACCESS_KEY_ID = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
     static def String AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
 }
-
-
-static def MY_GLOBAL_VAR3 = "beethoven"
