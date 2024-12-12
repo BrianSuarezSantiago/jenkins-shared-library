@@ -1,15 +1,15 @@
 package com.tirea.jenkinsLib
 
-//import vars.variables
-import variables
+import vars.Variables
+//import Variables
 
 class PipelineUtils {
     // Clone and configure step
     def prepareStage() {
         cleanWs()
         sh '''
-            git clone ${variables.FRONTEND_REPOSITORY_URL}
-            git clone ${variables.BACKEND_REPOSITORY_URL}
+            git clone ${Variables.FRONTEND_REPOSITORY_URL}
+            git clone ${Variables.BACKEND_REPOSITORY_URL}
             echo "Repositories have been successfully cloned"
         '''
     }
@@ -52,7 +52,7 @@ class PipelineUtils {
             echo "Dockerfile created successfully on $(date)"
 
             
-            echo "Docker image ${variables.MVN_DOCKER_IMAGE_NAME}:${variables.DOCKER_IMAGE_TAG} built successfully"
+            echo "Docker image ${Variables.MVN_DOCKER_IMAGE_NAME}:${Variables.DOCKER_IMAGE_TAG} built successfully"
         '''
         //docker build -t ${MVN_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
 
@@ -88,8 +88,8 @@ class PipelineUtils {
     def mavenDeployStage() {
         //! check --delete flag option for aws sync command
         sh '''
-            aws s3 sync maven_output/ s3://${variables.BUCKET_NAME}/
-            echo "Successfully loaded into ${variables.BUCKET_NAME} on $(date)"
+            aws s3 sync maven_output/ s3://${Variables.BUCKET_NAME}/
+            echo "Successfully loaded into ${Variables.BUCKET_NAME} on $(date)"
         '''
         cleanWs()
     }
@@ -117,7 +117,7 @@ class PipelineUtils {
             echo "Dockerfile created successfully on $(date)"
 
             
-            echo "Docker image ${variables.NPM_DOCKER_IMAGE_NAME}:${variables.DOCKER_IMAGE_TAG} built successfully"
+            echo "Docker image ${Variables.NPM_DOCKER_IMAGE_NAME}:${Variables.DOCKER_IMAGE_TAG} built successfully"
         '''
         //docker build -t ${NPM_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
 
@@ -136,7 +136,7 @@ class PipelineUtils {
         '''
         //echo "NPM output prepared on $(date)"
 
-        checkS3BucketExists("${variables.BUCKET_NAME}")
+        checkS3BucketExists("${Variables.BUCKET_NAME}")
 
         // Opcional: Realizar acciones adicionales (como zipear configuraciones o preparar datos para Kubernetes)
         // sh "zip -r ${zipFileName} ${configDir}/*"
@@ -145,8 +145,8 @@ class PipelineUtils {
     // Upload frontend to S3 bucket
     def npmDeployStage() {
         sh '''
-            aws s3 sync npm_output/ s3://${variables.BUCKET_NAME}/
-            echo "Successfully loaded into ${variables.BUCKET_NAME} on $(date)"
+            aws s3 sync npm_output/ s3://${Variables.BUCKET_NAME}/
+            echo "Successfully loaded into ${Variables.BUCKET_NAME} on $(date)"
         '''
         cleanWs()
     }

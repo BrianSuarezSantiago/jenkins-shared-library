@@ -1,7 +1,7 @@
 //!package vars
 
 // Define here all the global variables
-class variables{
+class Variables {
     // General configurations   
     //static final String FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
     static def String FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
