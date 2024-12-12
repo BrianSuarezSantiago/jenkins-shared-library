@@ -1,4 +1,4 @@
-package vars
+//!package vars
 
 // Define here all the global variables
 class Variables {
