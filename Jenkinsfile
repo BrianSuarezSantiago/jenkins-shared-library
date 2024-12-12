@@ -1,11 +1,9 @@
 @Library('shared-library') _
 
-//import com.ejemplo.MiClase
-
 pipeline {
     agent any
 
-    environment {
+    /*environment {
         FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
         BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
         FRONT_FOLDER_NAME = 'java-app' //! '' Placeholder, will be completed dynamically
@@ -16,7 +14,7 @@ pipeline {
         BUCKET_NAME = 'bucket-for-cicd-pipeline'
         AWS_ACCESS_KEY_ID = credentials('aws-credentials')
         AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')
-    }
+    }*/
 
     //! Establecer FOLDER_NAME dinámicamente (esto puede cambiar según el repositorio)
     //env.FOLDER_NAME = sh(script: "basename ${REPOSITORY_URL} .git", returnStdout: true).trim()
@@ -25,7 +23,15 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    ejemplo.prepareStage()
+                    def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
+                    pipelineUtils.prepareStage()
+
+                    dir("${FRONT_FOLDER_NAME}") {
+                        pipelineUtils.mavenBuildStage()
+                        pipelineUtils.mavenPackageStage()
+                        pipelineUtils.mavenDeployStage()
+                    }
+                    /*ejemplo.prepareStage()
                     dir("${FRONT_FOLDER_NAME}") {
                         ejemplo.mavenBuildStage()
                         ejemplo.mavenPackageStage()
@@ -36,7 +42,7 @@ pipeline {
                         ejemplo.npmBuildStage()
                         //ejemplo.npmPackageStage()
                         //ejemplo.npmDeployStage()                    
-                    }
+                    }*/
                 }
             }
         }
