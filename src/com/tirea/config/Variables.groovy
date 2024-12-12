@@ -18,6 +18,6 @@ class Variables {
 
     // AWS specific configurations
     static def String BUCKET_NAME = 'bucket-for-cicd-pipeline'
-    static def String AWS_ACCESS_KEY_ID = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
-    static def String AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
+    //static def String AWS_ACCESS_KEY_ID = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
+    //static def String AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
 }
