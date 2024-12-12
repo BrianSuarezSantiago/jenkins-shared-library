@@ -23,7 +23,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    println variables.BUCKET_NAME
+                    println Variables.BUCKET_NAME
                     //def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
                     //pipelineUtils.prepareStage()
 
