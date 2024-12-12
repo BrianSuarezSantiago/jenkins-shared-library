@@ -5,7 +5,8 @@ import vars.Variables
 class PipelineUtils {
     // Clone and configure step
     def imprimir() {
-        println "Prueba: ${Variables.FRONTEND_REPOSITORY_URL}"
+        //println "Prueba: ${Variables.FRONTEND_REPOSITORY_URL}"
+        println "Prueba: ${script.Variables.FRONTEND_REPOSITORY_URL}"
     }
 
  /*
