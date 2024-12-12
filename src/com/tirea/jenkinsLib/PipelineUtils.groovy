@@ -1,12 +1,12 @@
 package com.tirea.jenkinsLib
 
-import vars.Variables
+//import vars.Variables
 //import Variables
 
 class PipelineUtils {
     // Clone and configure step
     def imprimir() {
-        println "prueba ${Variables.FRONTEND_REPOSITORY_URL}"
+        println "prueba ${FRONTEND_REPOSITORY_URL}"
     }
 
     def prepareStage() {
