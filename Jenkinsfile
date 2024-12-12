@@ -5,7 +5,7 @@
 pipeline {
     agent any
 
-/*    environment {
+    environment {
         FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
         BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
         FRONT_FOLDER_NAME = 'java-app' //! '' Placeholder, will be completed dynamically
@@ -17,7 +17,7 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('aws-credentials')
         AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')
     }
-*/
+
     //! Establecer FOLDER_NAME dinámicamente (esto puede cambiar según el repositorio)
     //env.FOLDER_NAME = sh(script: "basename ${REPOSITORY_URL} .git", returnStdout: true).trim()
 
