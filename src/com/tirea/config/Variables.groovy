@@ -1,3 +1,5 @@
+package com.tirea.config
+
 // Define here all the global variables
 class Variables {
     // General configurations
