@@ -1,6 +1,6 @@
 package com.tirea.jenkinsLib
 
-//!import vars.Variables
+import vars.Variables
 //!import Variables
 
 class PipelineUtils {
