@@ -27,11 +27,11 @@ pipeline {
                     def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
                     pipelineUtils.prepareStage()
 
-                    dir("${FRONT_FOLDER_NAME}") {
+                    /*dir("${FRONT_FOLDER_NAME}") {
                         pipelineUtils.mavenBuildStage()
                         pipelineUtils.mavenPackageStage()
                         pipelineUtils.mavenDeployStage()
-                    }
+                    }*/
 
                     /*dir("${BACK_FOLDER_NAME}") {
                         ejemplo.npmBuildStage()
