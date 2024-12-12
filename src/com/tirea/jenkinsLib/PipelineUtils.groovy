@@ -20,8 +20,8 @@ class PipelineUtils {
 
     // AWS specific configurations
     static def  BUCKET_NAME = 'bucket-for-cicd-pipeline'
-    static def  AWS_ACCESS_KEY_ID = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
-    static def  AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
+    //static def  AWS_ACCESS_KEY_ID = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
+    //static def  AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
 
     // Clone and configure step
     def imprimir() {
