@@ -1,7 +1,6 @@
 package com.tirea.jenkinsLib
 
-import vars.Variables
-//!import Variables
+!import Variables
 
 class PipelineUtils {
     static def FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
