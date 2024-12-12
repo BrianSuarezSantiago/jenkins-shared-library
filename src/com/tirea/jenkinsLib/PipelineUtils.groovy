@@ -7,7 +7,7 @@ class PipelineUtils {
     def prepareStage() {
         cleanWs()
         sh '''
-            git clone ${Variables.FRONTEND_REPOSITORY_URL}
+            git clone ${vars.Variables.FRONTEND_REPOSITORY_URL}
             git clone ${Variables.BACKEND_REPOSITORY_URL}
             echo "Repositories have been successfully cloned"
         '''
