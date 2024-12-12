@@ -23,8 +23,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    println Variables.BUCKET_NAME
-                    //def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
+                    //println Variables.BUCKET_NAME
+                    def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
+                    pipelineUtils.imprimir()
                     //pipelineUtils.prepareStage()
 
                     /*

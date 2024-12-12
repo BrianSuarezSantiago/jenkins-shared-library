@@ -5,6 +5,10 @@ import vars.Variables
 
 class PipelineUtils {
     // Clone and configure step
+    def imprimir() {
+        println "prueba ${Variables.FRONTEND_REPOSITORY_URL}"
+    }
+
     def prepareStage() {
         cleanWs()
         sh '''
