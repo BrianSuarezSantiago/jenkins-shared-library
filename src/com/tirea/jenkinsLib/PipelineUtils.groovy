@@ -1,7 +1,5 @@
 package com.tirea.jenkinsLib
 
-import vars.Variables
-
 class PipelineUtils {
     // Clone and configure step
     def imprimir() {
