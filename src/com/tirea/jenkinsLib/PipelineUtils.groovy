@@ -25,7 +25,7 @@ class PipelineUtils {
 
     // Clone and configure step
     def imprimir() {
-        println "prueba ${FRONTEND_REPOSITORY_URL}"
+        println "prueba ${vars.Variables.FRONTEND_REPOSITORY_URL}"
     }
 
     def prepareStage() {
