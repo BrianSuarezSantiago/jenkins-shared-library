@@ -7,7 +7,7 @@ class PipelineUtils {
     def imprimir() {
         println "Prueba: ${Variables.FRONTEND_REPOSITORY_URL}"
     }
-}
+
  /*
     def prepareStage() {
         cleanWs()
