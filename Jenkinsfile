@@ -25,18 +25,15 @@ pipeline {
                 script {
                     //println Variables.BUCKET_NAME
                     def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
-                    pipelineUtils.imprimir()
-                    //pipelineUtils.prepareStage()
+                    pipelineUtils.prepareStage()
 
-                    /*
-                    ejemplo.prepareStage()
                     dir("${FRONT_FOLDER_NAME}") {
-                        ejemplo.mavenBuildStage()
-                        ejemplo.mavenPackageStage()
-                        ejemplo.mavenDeployStage()
+                        pipelineUtils.mavenBuildStage()
+                        pipelineUtils.mavenPackageStage()
+                        pipelineUtils.mavenDeployStage()
                     }
 
-                    dir("${BACK_FOLDER_NAME}") {
+                    /*dir("${BACK_FOLDER_NAME}") {
                         ejemplo.npmBuildStage()
                         //ejemplo.npmPackageStage()
                         //ejemplo.npmDeployStage()                    
