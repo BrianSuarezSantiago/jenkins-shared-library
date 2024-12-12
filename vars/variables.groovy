@@ -1,7 +1,7 @@
 //!package vars
 
 // Define here all the global variables
-
+class variables{
     // General configurations   
     static final String FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
     static final String BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
@@ -21,4 +21,4 @@
     static final String BUCKET_NAME = 'bucket-for-cicd-pipeline'
     static final String AWS_ACCESS_KEY_ID = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
     static final String AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
-
+}

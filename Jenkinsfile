@@ -24,15 +24,11 @@ pipeline {
             steps {
                 script {
                     println Variables.BUCKET_NAME
-                    def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
+                    def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils(this)
                     pipelineUtils.prepareStage()
 
-                    dir("${FRONT_FOLDER_NAME}") {
-                        pipelineUtils.mavenBuildStage()
-                        pipelineUtils.mavenPackageStage()
-                        pipelineUtils.mavenDeployStage()
-                    }
-                    /*ejemplo.prepareStage()
+                    /*
+                    ejemplo.prepareStage()
                     dir("${FRONT_FOLDER_NAME}") {
                         ejemplo.mavenBuildStage()
                         ejemplo.mavenPackageStage()
