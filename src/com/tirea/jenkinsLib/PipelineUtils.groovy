@@ -5,7 +5,7 @@ import com.tirea.config.Variables
 class PipelineUtils {
     // Clone and configure step
     def prepareStage() {
-        cleanWs()
+        //cleanWs()
         sh """
             git clone ${Variables.FRONTEND_REPOSITORY_URL}
             git clone ${Variables.BACKEND_REPOSITORY_URL}
