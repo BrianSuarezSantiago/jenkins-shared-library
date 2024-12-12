@@ -3,8 +3,8 @@ package com.tirea.jenkinsLib
 class PipelineUtils {
     // Clone and configure step
     def imprimir() {
-        //println "Prueba: ${Variables.FRONTEND_REPOSITORY_URL}"
-        println "Prueba: ${FRONTEND_REPOSITORY_URL}"
+        println "Prueba: ${Variables.FRONTEND_REPOSITORY_URL}"
+        //println "Prueba: ${FRONTEND_REPOSITORY_URL}"
     }
 
  /*
