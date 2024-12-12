@@ -1,30 +1,9 @@
 package com.tirea.jenkinsLib
 
-!import Variables
-
 class PipelineUtils {
-    static def FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
-    static def BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
-    static def  FRONT_FOLDER_NAME = 'java-app' //! '' Placeholder, will be completed dynamically
-    static def  BACK_FOLDER_NAME = 'simple-nodejs-app'
-
-    // Maven specific configurations
-    static def  MVN_DOCKER_IMAGE_NAME = 'spring'
-
-    // NPM specific configurations
-    static def  NPM_DOCKER_IMAGE_NAME = 'node'
-
-    // Docker specific configurations
-    static def  DOCKER_IMAGE_TAG = 'latest'
-
-    // AWS specific configurations
-    static def  BUCKET_NAME = 'bucket-for-cicd-pipeline'
-    //static def  AWS_ACCESS_KEY_ID = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
-    //static def  AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
-
     // Clone and configure step
     def imprimir() {
-        println "prueba ${vars.Variables.FRONTEND_REPOSITORY_URL}"
+        println "prueba ${Variables.FRONTEND_REPOSITORY_URL}"
     }
 
     def prepareStage() {

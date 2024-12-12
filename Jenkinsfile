@@ -26,7 +26,7 @@ pipeline {
                     //println Variables.BUCKET_NAME
                     def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
                     pipelineUtils.imprimir()
-                    pipelineUtils.prepareStage()
+                    //pipelineUtils.prepareStage()
 
                     /*
                     ejemplo.prepareStage()

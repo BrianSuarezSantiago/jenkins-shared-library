@@ -4,7 +4,7 @@
 class Variables {
     // General configurations   
     //static final String FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
-    static def FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
+    def FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
     static def String BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
     static def String FRONT_FOLDER_NAME = 'java-app' //! '' Placeholder, will be completed dynamically
     static def String BACK_FOLDER_NAME = 'simple-nodejs-app'
