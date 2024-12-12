@@ -24,8 +24,8 @@ pipeline {
             steps {
                 script {
                     println Variables.BUCKET_NAME
-                    def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils(this)
-                    pipelineUtils.prepareStage()
+                    //def pipelineUtils = new com.tirea.jenkinsLib.PipelineUtils()
+                    //pipelineUtils.prepareStage()
 
                     /*
                     ejemplo.prepareStage()
