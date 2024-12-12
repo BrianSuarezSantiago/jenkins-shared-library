@@ -5,6 +5,8 @@ class Variables {
     // General configurations   
     //static final String FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
     def FRONTEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/simple-nodejs-app.git'
+    
+    /*
     static def String BACKEND_REPOSITORY_URL = 'https://github.com/BrianSuarezSantiago/java-app.git'
     static def String FRONT_FOLDER_NAME = 'java-app' //! '' Placeholder, will be completed dynamically
     static def String BACK_FOLDER_NAME = 'simple-nodejs-app'
@@ -22,4 +24,6 @@ class Variables {
     static def String BUCKET_NAME = 'bucket-for-cicd-pipeline'
     static def String AWS_ACCESS_KEY_ID = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
     static def String AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')  // Name of the global credentials created on Jenkins
+    */
 }
+
